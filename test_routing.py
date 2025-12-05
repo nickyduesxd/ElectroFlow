@@ -1,10 +1,3 @@
-"""
-Quick Test Script for Electrical Flow Routing
-==============================================
-
-Runs electrical flow routing on connected node pairs.
-"""
-
 from leo_constellation import LEOConstellation
 from leo_electrical_routing import ElectricalFlowRouter
 from datetime import datetime
@@ -12,10 +5,6 @@ import networkx as nx
 
 def test_routing():
     """Test electrical routing with guaranteed connected nodes."""
-    
-    print("\n" + "="*70)
-    print("ELECTRICAL FLOW ROUTING - QUICK TEST")
-    print("="*70 + "\n")
     
     # Load constellation
     print("Loading LEO constellation...")
@@ -61,9 +50,7 @@ def test_routing():
     router = ElectricalFlowRouter(G)
     
     # Compare algorithms
-    print("\n" + "-"*70)
     print("Running routing algorithms...")
-    print("-"*70)
     
     comparison = router.compare_with_dijkstra(source, dest)
     
@@ -72,12 +59,10 @@ def test_routing():
         
         # Show some path details
         if comparison['electrical']['paths']:
-            print("\n🛤️  ELECTRICAL FLOW PATHS:")
             for i, path in enumerate(comparison['electrical']['paths'][:3], 1):
                 print(f"  Path {i}: {' → '.join(map(str, path))}")
         
         if comparison['dijkstra']['path']:
-            print("\n🛤️  DIJKSTRA PATH:")
             print(f"  {' → '.join(map(str, comparison['dijkstra']['path']))}")
     
     print("\n" + "="*70)
@@ -90,7 +75,4 @@ def test_routing():
 if __name__ == "__main__":
     router, comparison = test_routing()
     
-    print("\n💡 TIP: Edit leo_electrical_routing.py to modify resistance formula")
-    print("   Located in: _calculate_resistance() method")
-    print("\n   Current: R = α·latency + β·(1/capacity)")
-    print("   Try: R = α·latency² + β·(1/capacity) for latency-sensitive routing\n")
+
